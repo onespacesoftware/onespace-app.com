@@ -1,0 +1,119 @@
+/* override browser default */
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* use viewport-relative units to cover page fully */
+body {
+  height: 100vh;
+  width: 100vw;
+}
+
+/* include border and padding in element width and height */
+* {
+  box-sizing: border-box;
+}
+
+#full-page-wrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+#left-side {
+    width: 50%;
+    height: 100%;
+    background-color: rgb(149, 211, 206);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+
+#download-button {
+    border-radius: 1vw;
+    background-color: red;
+    padding: 1vw;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+}
+
+#onespace-title {
+    font-size: 4vw;
+}
+
+#title-phrase {
+    font-size: 2vw;
+}
+
+#right-side {
+    width: 50%;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#who-we-are-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+#team-container {
+    padding: 2vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#people-image-containers {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+#people-image-containers div {
+    width: 8vw;
+    height: 8vw;
+    border-radius: 50%;
+    border: solid;
+    margin: 1vw;
+}
+#the-team-header {
+    font-size: 2vw;
+}
+#ayush-img {
+    background-image: url("/teamImages/ayushofficial2.png");
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center center; 
+}
+#sid-img {
+    background-image: url("/teamImages/sid.JPG");
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center center; 
+}
+#sahith-img {
+    background-image: url("/teamImages/sahith.png");
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center center; 
+}
