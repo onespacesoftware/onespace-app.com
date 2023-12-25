@@ -1,13 +1,13 @@
-import "./style.css";
+import * as THREE from "./node_modules/three/build/three.module.js";
 import { OrbitControls } from "./vendor_mods/three/examples/jsm/controls/OrbitControls.js";
-import Logo from "/teamImages/logo.jpg";
-import Paris from "/teamImages/paris.jpg";
-import Umang from "/teamImages/umang.jpg";
-import Weston from "/teamImages/weston.jpg";
-import Sahith from "/teamImages/sahith.jpg";
-import Ayush from "/teamImages/ayush.jpg";
-import Sid from "/teamImages/sid.jpg";
-import Title from "/team title.png";
+import Logo from "./teamImages/logo.jpg";
+import Paris from "./teamImages/paris.jpg";
+import Umang from "./teamImages/umang.jpg";
+import Weston from "./teamImages/weston.jpg";
+import Sahith from "./teamImages/sahith.jpg";
+import Ayush from "./teamImages/ayush.jpg";
+import Sid from "./teamImages/sid.jpg";
+import Title from "./teamImages/team_title.png";
 
 /////////////////////////////
 ///// ENVIRONMENT SETUP /////
