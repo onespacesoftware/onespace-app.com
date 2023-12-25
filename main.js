@@ -1,29 +1,13 @@
-import "./style.css";
-import { OrbitControls } from "./vendor_mods/three/examples/jsm/controls/OrbitControls.js";
-
-const logoImage = new Image();
-logoImage.src = "./teamImages/logo.jpg";
-
-const parisImage = new Image();
-parisImage.src = "./teamImages/paris.jpg";
-
-const umangImage = new Image();
-umangImage.src = "./teamImages/umang.jpg";
-
-const westonImage = new Image();
-westonImage.src = "./teamImages/weston.jpg";
-
-const sahithImage = new Image();
-sahithImage.src = "./teamImages/sahith.jpg";
-
-const ayushImage = new Image();
-ayushImage.src = "./teamImages/ayush.jpg";
-
-const sidImage = new Image();
-sidImage.src = "./teamImages/sid.jpg";
-
-const titleImage = new Image();
-titleImage.src = "./teamImages/team_title.png";
+import * as THREE from "https://unpkg.com/three@0.159.0/build/three.module.js";
+import { OrbitControls } from 'https://unpkg.com/three@0.159.0/examples/jsm/controls/OrbitControls.js';
+import Logo from "./teamImages/logo.jpg";
+import Paris from "./teamImages/paris.jpg";
+import Umang from "./teamImages/umang.jpg";
+import Weston from "./teamImages/weston.jpg";
+import Sahith from "./teamImages/sahith.jpg";
+import Ayush from "./teamImages/ayush.jpg";
+import Sid from "./teamImages/sid.jpg";
+import Title from "./teamImages/team_title.png";
 
 /////////////////////////////
 ///// ENVIRONMENT SETUP /////
@@ -278,7 +262,7 @@ topLeft.rotation.x = -Math.PI / 2;
 topLeft.position.set(120, 0.25, 350);
 scene.add(topLeft);
 
-const parisTexture = new THREE.TextureLoader().load(parisImage);
+const parisTexture = new THREE.TextureLoader().load(Paris);
 const paris = new THREE.Mesh(
   new THREE.CircleGeometry(80, 50),
   new THREE.MeshLambertMaterial({ map: parisTexture })
@@ -299,7 +283,7 @@ topRight.rotation.x = -Math.PI / 2;
 topRight.position.set(-120, 0.25, 350);
 scene.add(topRight);
 
-const umangTexture = new THREE.TextureLoader().load(umangImage);
+const umangTexture = new THREE.TextureLoader().load(Umang);
 const umang = new THREE.Mesh(
   new THREE.CircleGeometry(80, 50),
   new THREE.MeshLambertMaterial({ map: umangTexture })
@@ -320,7 +304,7 @@ bottomLeft.rotation.x = -Math.PI / 2;
 bottomLeft.position.set(120, 0.25, 195);
 scene.add(bottomLeft);
 
-const westonTexture = new THREE.TextureLoader().load(westonImage);
+const westonTexture = new THREE.TextureLoader().load(Weston);
 const weston = new THREE.Mesh(
   new THREE.CircleGeometry(40, 50),
   new THREE.MeshLambertMaterial({ map: westonTexture })
@@ -335,7 +319,7 @@ westonLight.position.set(160, 20, 180);
 // const westonLightHelper = new THREE.PointLightHelper(westonLight);
 scene.add(westonLight);
 
-const tylerTexture = new THREE.TextureLoader().load(logoImage);
+const tylerTexture = new THREE.TextureLoader().load(Logo);
 const tyler = new THREE.Mesh(
   new THREE.CircleGeometry(40, 50),
   new THREE.MeshLambertMaterial({ map: tylerTexture })
@@ -356,7 +340,7 @@ bottomRight.rotation.x = -Math.PI / 2;
 bottomRight.position.set(-120, 0.25, 195);
 scene.add(bottomRight);
 
-const sahithTexture = new THREE.TextureLoader().load(sahithImage);
+const sahithTexture = new THREE.TextureLoader().load(Sahith);
 const sahith = new THREE.Mesh(
   new THREE.CircleGeometry(30, 50),
   new THREE.MeshLambertMaterial({ map: sahithTexture })
@@ -371,7 +355,7 @@ sahithLight.position.set(-50, 10, 180);
 // const sahithLightHelper = new THREE.PointLightHelper(sahithLight);
 scene.add(sahithLight);
 
-const ayushTexture = new THREE.TextureLoader().load(ayushImage);
+const ayushTexture = new THREE.TextureLoader().load(Ayush);
 const ayush = new THREE.Mesh(
   new THREE.CircleGeometry(30, 50),
   new THREE.MeshLambertMaterial({ map: ayushTexture })
@@ -386,7 +370,7 @@ ayushLight.position.set(-120, 10, 180);
 const ayushLightHelper = new THREE.PointLightHelper(ayushLight);
 scene.add(ayushLight);
 
-const sidTexture = new THREE.TextureLoader().load(sidImage);
+const sidTexture = new THREE.TextureLoader().load(Sid);
 const sid = new THREE.Mesh(
   new THREE.CircleGeometry(30, 50),
   new THREE.MeshLambertMaterial({ map: sidTexture })
@@ -401,7 +385,7 @@ sidLight.position.set(-190, 10, 180);
 // const sidLightHelper = new THREE.PointLightHelper(sidLight);
 scene.add(sidLight);
 
-const titleTexture = new THREE.TextureLoader().load(titleImage);
+const titleTexture = new THREE.TextureLoader().load(Title);
 const titleRectangle = new THREE.PlaneGeometry(200, 40);
 const titleMesh = new THREE.MeshLambertMaterial({ map: titleTexture });
 titleMesh.alphaHash = 1;

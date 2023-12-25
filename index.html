@@ -2,10 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="./style.css">
-    <title>Vite App</title>
+    <title>OneSpace 💻🚀!!!!!</title>
   </head>
   <body>
     <canvas id="bg"></canvas>
@@ -99,8 +98,13 @@
         <i>"Lorem ipsum dolor sit amet"</i>
       </section>
     </main>
-    <script type="module" src="./main.js">
-      import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.module.js';
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.141.0/build/three.module.js"
+        }
+      }
     </script>
+    <script type="module" src="./main.js"></script>
   </body>
 </html>
