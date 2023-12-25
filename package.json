@@ -9,12 +9,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "css-loader": "^6.8.1",
-    "file-loader": "^6.2.0",
-    "style-loader": "^3.3.3",
-    "vite": "^5.0.8",
-    "webpack": "^5.89.0",
-    "webpack-cli": "^5.1.4"
+    "vite": "^5.0.8"
   },
   "dependencies": {
     "three": "^0.159.0"
