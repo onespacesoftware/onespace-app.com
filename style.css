@@ -27,12 +27,13 @@ main {
   padding: 2rem;
   margin-bottom: var(--spacing);
   text-shadow: 1px 3px 3px white;
-  --spacing: 300px;
+  --spacing: 470px;
   opacity: 0;
   animation-delay: 0.25s;
   animation-name: fadeIn;
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
+  margin-top: -6vw;
 }
 
 #greeting h1 span:first-child {
@@ -78,7 +79,7 @@ main {
 
 #meet-team-button {
   color: white;
-  margin-top: 17vw;
+  margin-top: 10vw;
   grid-column: 9 / span 3;
   text-shadow: none;
   font-size: 2vw;

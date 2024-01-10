@@ -1,13 +1,5 @@
 import * as THREE from "https://unpkg.com/three@0.159.0/build/three.module.js";
 import { OrbitControls } from 'https://unpkg.com/three@0.159.0/examples/jsm/controls/OrbitControls.js';
-import Logo from "./teamImages/logo.jpg";
-import Paris from "./teamImages/paris.jpg";
-import Umang from "./teamImages/umang.jpg";
-import Weston from "./teamImages/weston.jpg";
-import Sahith from "./teamImages/sahith.jpg";
-import Ayush from "./teamImages/ayush.jpg";
-import Sid from "./teamImages/sid.jpg";
-import Title from "./teamImages/team_title.png";
 
 /////////////////////////////
 ///// ENVIRONMENT SETUP /////
@@ -129,7 +121,7 @@ const squaresGroup = new THREE.Group();
 squaresGroup.add(square1, square2, square3);
 scene.add(squaresGroup);
 
-function onDocumentMouseDown(event) {
+function onSquaresClick(event) {
   event.preventDefault();
 
   const mouse = new THREE.Vector2();
@@ -142,10 +134,10 @@ function onDocumentMouseDown(event) {
   const intersects = raycaster.intersectObjects(squaresGroup.children, true);
 
   if (intersects.length > 0) {
-    onClick(event);
+    spin(event);
   }
 }
-document.addEventListener("mousedown", onDocumentMouseDown, false);
+document.addEventListener("mousedown", onSquaresClick, false);
 
 let isSpinning = false;
 let originalRotationSpeed = 0.005;
@@ -153,16 +145,16 @@ let clickRotationSpeed = 0.2;
 let spinAcceleration = 0.01;
 let spinDeceleration = 0.0005;
 
-function onClick() {
+function spin() {
   if (!isSpinning) {
     isSpinning = true;
     originalRotationSpeed = 0.005;
 
-    const spinFast = () => {
+    const speedUp = () => {
       if (originalRotationSpeed < clickRotationSpeed) {
         originalRotationSpeed += spinAcceleration;
         squaresGroup.rotateY(originalRotationSpeed);
-        requestAnimationFrame(spinFast);
+        requestAnimationFrame(speedUp);
       } else {
         slowDown();
       }
@@ -179,7 +171,7 @@ function onClick() {
       }
     };
 
-    spinFast();
+    speedUp();
   }
 }
 
@@ -212,7 +204,7 @@ const gradientMaterial = new THREE.ShaderMaterial({
 const circle = new THREE.CircleGeometry(5, 50);
 const shadow = new THREE.Mesh(circle, gradientMaterial);
 shadow.rotation.x = -Math.PI / 2;
-shadow.position.y = 0.05;
+shadow.position.y = 0.5;
 scene.add(shadow);
 
 const ground = new THREE.CircleGeometry(25, 100);
@@ -262,7 +254,7 @@ topLeft.rotation.x = -Math.PI / 2;
 topLeft.position.set(120, 0.25, 350);
 scene.add(topLeft);
 
-const parisTexture = new THREE.TextureLoader().load(Paris);
+const parisTexture = new THREE.TextureLoader().load("./teamImages/paris.jpg");
 const paris = new THREE.Mesh(
   new THREE.CircleGeometry(80, 50),
   new THREE.MeshLambertMaterial({ map: parisTexture })
@@ -272,7 +264,7 @@ paris.rotation.x = -Math.PI / 2;
 paris.rotation.z = -Math.PI;
 scene.add(paris);
 
-const parisLight = new THREE.PointLight(0xffffff, 500, 0);
+const parisLight = new THREE.PointLight(0xffffff, 50, 0);
 parisLight.position.set(110, 30, 320);
 // const parisLightHelper = new THREE.PointLightHelper(parisLight);
 scene.add(parisLight);
@@ -283,7 +275,7 @@ topRight.rotation.x = -Math.PI / 2;
 topRight.position.set(-120, 0.25, 350);
 scene.add(topRight);
 
-const umangTexture = new THREE.TextureLoader().load(Umang);
+const umangTexture = new THREE.TextureLoader().load("./teamImages/umang.jpg");
 const umang = new THREE.Mesh(
   new THREE.CircleGeometry(80, 50),
   new THREE.MeshLambertMaterial({ map: umangTexture })
@@ -293,7 +285,7 @@ umang.rotation.x = -Math.PI / 2;
 umang.rotation.z = -Math.PI;
 scene.add(umang);
 
-const umangLight = new THREE.PointLight(0xffffff, 500, 0);
+const umangLight = new THREE.PointLight(0xffffff, 50, 0);
 umangLight.position.set(-110, 30, 320);
 // const umangLightHelper = new THREE.PointLightHelper(umangLight);
 scene.add(umangLight);
@@ -304,7 +296,7 @@ bottomLeft.rotation.x = -Math.PI / 2;
 bottomLeft.position.set(120, 0.25, 195);
 scene.add(bottomLeft);
 
-const westonTexture = new THREE.TextureLoader().load(Weston);
+const westonTexture = new THREE.TextureLoader().load("./teamImages/weston.jpg");
 const weston = new THREE.Mesh(
   new THREE.CircleGeometry(40, 50),
   new THREE.MeshLambertMaterial({ map: westonTexture })
@@ -314,12 +306,12 @@ weston.rotation.x = -Math.PI / 2;
 weston.rotation.z = -Math.PI;
 scene.add(weston);
 
-const westonLight = new THREE.PointLight(0xffffff, 500, 0);
+const westonLight = new THREE.PointLight(0xffffff, 50, 0);
 westonLight.position.set(160, 20, 180);
 // const westonLightHelper = new THREE.PointLightHelper(westonLight);
 scene.add(westonLight);
 
-const tylerTexture = new THREE.TextureLoader().load(Logo);
+const tylerTexture = new THREE.TextureLoader().load("./teamImages/logo.jpg");
 const tyler = new THREE.Mesh(
   new THREE.CircleGeometry(40, 50),
   new THREE.MeshLambertMaterial({ map: tylerTexture })
@@ -329,9 +321,9 @@ tyler.rotation.x = -Math.PI / 2;
 tyler.rotation.z = -Math.PI;
 scene.add(tyler);
 
-const tylerLight = new THREE.PointLight(0xffffff, 500, 0);
+const tylerLight = new THREE.PointLight(0xffffff, 50, 0);
 tylerLight.position.set(65, 20, 180);
-const tylerLightHelper = new THREE.PointLightHelper(tylerLight);
+// const tylerLightHelper = new THREE.PointLightHelper(tylerLight);
 scene.add(tylerLight);
 
 const rectangle5 = new THREE.PlaneGeometry(220, 90);
@@ -340,7 +332,7 @@ bottomRight.rotation.x = -Math.PI / 2;
 bottomRight.position.set(-120, 0.25, 195);
 scene.add(bottomRight);
 
-const sahithTexture = new THREE.TextureLoader().load(Sahith);
+const sahithTexture = new THREE.TextureLoader().load("./teamImages/sahith.jpg");
 const sahith = new THREE.Mesh(
   new THREE.CircleGeometry(30, 50),
   new THREE.MeshLambertMaterial({ map: sahithTexture })
@@ -350,12 +342,12 @@ sahith.rotation.x = -Math.PI / 2;
 sahith.rotation.z = -Math.PI;
 scene.add(sahith);
 
-const sahithLight = new THREE.PointLight(0xffffff, 100, 0);
+const sahithLight = new THREE.PointLight(0xffffff, 10, 0);
 sahithLight.position.set(-50, 10, 180);
 // const sahithLightHelper = new THREE.PointLightHelper(sahithLight);
 scene.add(sahithLight);
 
-const ayushTexture = new THREE.TextureLoader().load(Ayush);
+const ayushTexture = new THREE.TextureLoader().load("./teamImages/ayush.jpg");
 const ayush = new THREE.Mesh(
   new THREE.CircleGeometry(30, 50),
   new THREE.MeshLambertMaterial({ map: ayushTexture })
@@ -365,12 +357,12 @@ ayush.rotation.x = -Math.PI / 2;
 ayush.rotation.z = -Math.PI;
 scene.add(ayush);
 
-const ayushLight = new THREE.PointLight(0xffffff, 100, 0);
+const ayushLight = new THREE.PointLight(0xffffff, 10, 0);
 ayushLight.position.set(-120, 10, 180);
-const ayushLightHelper = new THREE.PointLightHelper(ayushLight);
+// const ayushLightHelper = new THREE.PointLightHelper(ayushLight);
 scene.add(ayushLight);
 
-const sidTexture = new THREE.TextureLoader().load(Sid);
+const sidTexture = new THREE.TextureLoader().load("./teamImages/sid.jpg");
 const sid = new THREE.Mesh(
   new THREE.CircleGeometry(30, 50),
   new THREE.MeshLambertMaterial({ map: sidTexture })
@@ -380,12 +372,12 @@ sid.rotation.x = -Math.PI / 2;
 sid.rotation.z = -Math.PI;
 scene.add(sid);
 
-const sidLight = new THREE.PointLight(0xffffff, 100, 0);
+const sidLight = new THREE.PointLight(0xffffff, 10, 0);
 sidLight.position.set(-190, 10, 180);
 // const sidLightHelper = new THREE.PointLightHelper(sidLight);
 scene.add(sidLight);
 
-const titleTexture = new THREE.TextureLoader().load(Title);
+const titleTexture = new THREE.TextureLoader().load("./teamImages/team_title.png");
 const titleRectangle = new THREE.PlaneGeometry(200, 40);
 const titleMesh = new THREE.MeshLambertMaterial({ map: titleTexture });
 titleMesh.alphaHash = 1;
@@ -396,7 +388,7 @@ title.rotation.x = -Math.PI / 2;
 title.rotation.z = -Math.PI;
 scene.add(title);
 
-const titleLight = new THREE.PointLight(0xffffff, 500, 0);
+const titleLight = new THREE.PointLight(0xffffff, 50, 0);
 titleLight.position.set(0, 20, 450);
 // const titleLightHelper = new THREE.PointLightHelper(titleLight);
 scene.add(titleLight);
