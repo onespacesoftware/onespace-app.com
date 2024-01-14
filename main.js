@@ -1,5 +1,5 @@
 import * as THREE from "https://unpkg.com/three@0.159.0/build/three.module.js";
-import { OrbitControls } from 'https://unpkg.com/three@0.159.0/examples/jsm/controls/OrbitControls.js';
+import { OrbitControls } from "https://unpkg.com/three@0.159.0/examples/jsm/controls/OrbitControls.js";
 
 /////////////////////////////
 ///// ENVIRONMENT SETUP /////
@@ -435,7 +435,6 @@ window.addEventListener("load", () => {
 document.addEventListener("DOMContentLoaded", () => {
   const meetTeamButton = document.getElementById("meet-team-button");
   const sections = document.querySelectorAll("section");
-  const main = document.querySelector("main");
   const nextPrevButtons = document.getElementById("next-prev-buttons");
   const prevButton = document.getElementById("prev-button");
   const nextButton = document.getElementById("next-button");
