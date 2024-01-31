@@ -1,5 +1,6 @@
 import * as THREE from "https://unpkg.com/three@0.159.0/build/three.module.js";
 import { OrbitControls } from "https://unpkg.com/three@0.159.0/examples/jsm/controls/OrbitControls.js";
+import { SphereGeometry } from "three";
 
 /////////////////////////////
 ///// ENVIRONMENT SETUP /////
@@ -8,12 +9,12 @@ import { OrbitControls } from "https://unpkg.com/three@0.159.0/examples/jsm/cont
 const scene = new THREE.Scene();
 
 const camera = new THREE.PerspectiveCamera(
-  100,
+  80,
   window.innerWidth / window.innerHeight,
   0.1,
   1000
 );
-camera.position.set(0, 55, -55);
+camera.position.set(0, 15, -55);
 
 const renderer = new THREE.WebGLRenderer({
   canvas: document.querySelector("#bg"),
@@ -113,12 +114,11 @@ const material3 = new THREE.MeshStandardMaterial({
   side: THREE.DoubleSide,
 });
 const square3 = new THREE.Mesh(geometry3, material3);
-9;
-
 square3.position.set(7, 22, -0.75);
 
 const squaresGroup = new THREE.Group();
 squaresGroup.add(square1, square2, square3);
+squaresGroup.position.set(-25, 0, 0);
 scene.add(squaresGroup);
 
 function onSquaresClick(event) {
@@ -204,7 +204,7 @@ const gradientMaterial = new THREE.ShaderMaterial({
 const circle = new THREE.CircleGeometry(5, 50);
 const shadow = new THREE.Mesh(circle, gradientMaterial);
 shadow.rotation.x = -Math.PI / 2;
-shadow.position.y = 0.5;
+shadow.position.set(-25, 0.5, 0);
 scene.add(shadow);
 
 const ground = new THREE.CircleGeometry(25, 100);
@@ -212,6 +212,7 @@ const mesh = new THREE.MeshLambertMaterial({ color: "gray" });
 const platform = new THREE.Mesh(ground, mesh);
 platform.rotation.x = -Math.PI / 2;
 platform.receiveShadow = true;
+platform.position.set(-25, 0, 0);
 scene.add(platform);
 
 const logoSpotLight = new THREE.SpotLight(
@@ -222,7 +223,11 @@ const logoSpotLight = new THREE.SpotLight(
   0.5,
   0.75
 );
-logoSpotLight.position.set(0, 40, 0);
+logoSpotLight.position.set(-25, 40, 0);
+
+const t = new THREE.Object3D();
+t.position.set(-25, 0, 0);
+logoSpotLight.target = t;
 
 logoSpotLight.castShadow = true;
 
@@ -233,193 +238,193 @@ logoSpotLight.shadow.camera.near = 500;
 logoSpotLight.shadow.camera.far = 4000;
 logoSpotLight.shadow.camera.fov = 30;
 
-scene.add(logoSpotLight);
+scene.add(logoSpotLight, t);
 
 /////////////////
 ///// ABOUT /////
 /////////////////
 
-const rectangle1 = new THREE.PlaneGeometry(480, 340);
-const windowBackground = new THREE.MeshLambertMaterial({ color: 0x97c5f1 });
-const mainFrame = new THREE.Mesh(rectangle1, windowBackground);
-mainFrame.rotation.x = -Math.PI / 2;
-mainFrame.position.set(0, 0, 310);
-scene.add(mainFrame);
+// const rectangle1 = new THREE.PlaneGeometry(480, 340);
+// const windowBackground = new THREE.MeshLambertMaterial({ color: 0x97c5f1 });
+// const mainFrame = new THREE.Mesh(rectangle1, windowBackground);
+// mainFrame.rotation.x = -Math.PI / 2;
+// mainFrame.position.set(0, 0, 310);
+// scene.add(mainFrame);
 
-const rectangleBackground = new THREE.MeshLambertMaterial({ color: 0xf4f9ff });
+// const rectangleBackground = new THREE.MeshLambertMaterial({ color: 0xf4f9ff });
 
-const rectangle2 = new THREE.PlaneGeometry(220, 180);
-const topLeft = new THREE.Mesh(rectangle2, rectangleBackground);
-topLeft.rotation.x = -Math.PI / 2;
-topLeft.position.set(120, 0.25, 350);
-scene.add(topLeft);
+// const rectangle2 = new THREE.PlaneGeometry(220, 180);
+// const topLeft = new THREE.Mesh(rectangle2, rectangleBackground);
+// topLeft.rotation.x = -Math.PI / 2;
+// topLeft.position.set(120, 0.25, 350);
+// scene.add(topLeft);
 
-const parisTexture = new THREE.TextureLoader().load("./teamImages/paris.jpg");
-const paris = new THREE.Mesh(
-  new THREE.CircleGeometry(80, 50),
-  new THREE.MeshLambertMaterial({ map: parisTexture })
-);
-paris.position.set(120, 0.5, 350);
-paris.rotation.x = -Math.PI / 2;
-paris.rotation.z = -Math.PI;
-scene.add(paris);
+// const parisTexture = new THREE.TextureLoader().load("./teamImages/paris.jpg");
+// const paris = new THREE.Mesh(
+//   new THREE.CircleGeometry(80, 50),
+//   new THREE.MeshLambertMaterial({ map: parisTexture })
+// );
+// paris.position.set(120, 0.5, 350);
+// paris.rotation.x = -Math.PI / 2;
+// paris.rotation.z = -Math.PI;
+// scene.add(paris);
 
-const parisLight = new THREE.PointLight(0xffffff, 50, 0);
-parisLight.position.set(110, 30, 320);
-// const parisLightHelper = new THREE.PointLightHelper(parisLight);
-scene.add(parisLight);
+// const parisLight = new THREE.PointLight(0xffffff, 50, 0);
+// parisLight.position.set(110, 30, 320);
+// // const parisLightHelper = new THREE.PointLightHelper(parisLight);
+// scene.add(parisLight);
 
-const rectangle3 = new THREE.PlaneGeometry(220, 180);
-const topRight = new THREE.Mesh(rectangle3, rectangleBackground);
-topRight.rotation.x = -Math.PI / 2;
-topRight.position.set(-120, 0.25, 350);
-scene.add(topRight);
+// const rectangle3 = new THREE.PlaneGeometry(220, 180);
+// const topRight = new THREE.Mesh(rectangle3, rectangleBackground);
+// topRight.rotation.x = -Math.PI / 2;
+// topRight.position.set(-120, 0.25, 350);
+// scene.add(topRight);
 
-const umangTexture = new THREE.TextureLoader().load("./teamImages/umang.jpg");
-const umang = new THREE.Mesh(
-  new THREE.CircleGeometry(80, 50),
-  new THREE.MeshLambertMaterial({ map: umangTexture })
-);
-umang.position.set(-120, 0.5, 350);
-umang.rotation.x = -Math.PI / 2;
-umang.rotation.z = -Math.PI;
-scene.add(umang);
+// const umangTexture = new THREE.TextureLoader().load("./teamImages/umang.jpg");
+// const umang = new THREE.Mesh(
+//   new THREE.CircleGeometry(80, 50),
+//   new THREE.MeshLambertMaterial({ map: umangTexture })
+// );
+// umang.position.set(-120, 0.5, 350);
+// umang.rotation.x = -Math.PI / 2;
+// umang.rotation.z = -Math.PI;
+// scene.add(umang);
 
-const umangLight = new THREE.PointLight(0xffffff, 50, 0);
-umangLight.position.set(-110, 30, 320);
-// const umangLightHelper = new THREE.PointLightHelper(umangLight);
-scene.add(umangLight);
+// const umangLight = new THREE.PointLight(0xffffff, 50, 0);
+// umangLight.position.set(-110, 30, 320);
+// // const umangLightHelper = new THREE.PointLightHelper(umangLight);
+// scene.add(umangLight);
 
-const rectangle4 = new THREE.PlaneGeometry(220, 90);
-const bottomLeft = new THREE.Mesh(rectangle4, rectangleBackground);
-bottomLeft.rotation.x = -Math.PI / 2;
-bottomLeft.position.set(120, 0.25, 195);
-scene.add(bottomLeft);
+// const rectangle4 = new THREE.PlaneGeometry(220, 90);
+// const bottomLeft = new THREE.Mesh(rectangle4, rectangleBackground);
+// bottomLeft.rotation.x = -Math.PI / 2;
+// bottomLeft.position.set(120, 0.25, 195);
+// scene.add(bottomLeft);
 
-const westonTexture = new THREE.TextureLoader().load("./teamImages/weston.jpg");
-const weston = new THREE.Mesh(
-  new THREE.CircleGeometry(40, 50),
-  new THREE.MeshLambertMaterial({ map: westonTexture })
-);
-weston.position.set(170, 0.5, 195);
-weston.rotation.x = -Math.PI / 2;
-weston.rotation.z = -Math.PI;
-scene.add(weston);
+// const westonTexture = new THREE.TextureLoader().load("./teamImages/weston.jpg");
+// const weston = new THREE.Mesh(
+//   new THREE.CircleGeometry(40, 50),
+//   new THREE.MeshLambertMaterial({ map: westonTexture })
+// );
+// weston.position.set(170, 0.5, 195);
+// weston.rotation.x = -Math.PI / 2;
+// weston.rotation.z = -Math.PI;
+// scene.add(weston);
 
-const westonLight = new THREE.PointLight(0xffffff, 50, 0);
-westonLight.position.set(160, 20, 180);
-// const westonLightHelper = new THREE.PointLightHelper(westonLight);
-scene.add(westonLight);
+// const westonLight = new THREE.PointLight(0xffffff, 50, 0);
+// westonLight.position.set(160, 20, 180);
+// // const westonLightHelper = new THREE.PointLightHelper(westonLight);
+// scene.add(westonLight);
 
-const tylerTexture = new THREE.TextureLoader().load("./teamImages/logo.jpg");
-const tyler = new THREE.Mesh(
-  new THREE.CircleGeometry(40, 50),
-  new THREE.MeshLambertMaterial({ map: tylerTexture })
-);
-tyler.position.set(70, 0.5, 195);
-tyler.rotation.x = -Math.PI / 2;
-tyler.rotation.z = -Math.PI;
-scene.add(tyler);
+// const tylerTexture = new THREE.TextureLoader().load("./teamImages/logo.jpg");
+// const tyler = new THREE.Mesh(
+//   new THREE.CircleGeometry(40, 50),
+//   new THREE.MeshLambertMaterial({ map: tylerTexture })
+// );
+// tyler.position.set(70, 0.5, 195);
+// tyler.rotation.x = -Math.PI / 2;
+// tyler.rotation.z = -Math.PI;
+// scene.add(tyler);
 
-const tylerLight = new THREE.PointLight(0xffffff, 50, 0);
-tylerLight.position.set(65, 20, 180);
-// const tylerLightHelper = new THREE.PointLightHelper(tylerLight);
-scene.add(tylerLight);
+// const tylerLight = new THREE.PointLight(0xffffff, 50, 0);
+// tylerLight.position.set(65, 20, 180);
+// // const tylerLightHelper = new THREE.PointLightHelper(tylerLight);
+// scene.add(tylerLight);
 
-const rectangle5 = new THREE.PlaneGeometry(220, 90);
-const bottomRight = new THREE.Mesh(rectangle5, rectangleBackground);
-bottomRight.rotation.x = -Math.PI / 2;
-bottomRight.position.set(-120, 0.25, 195);
-scene.add(bottomRight);
+// const rectangle5 = new THREE.PlaneGeometry(220, 90);
+// const bottomRight = new THREE.Mesh(rectangle5, rectangleBackground);
+// bottomRight.rotation.x = -Math.PI / 2;
+// bottomRight.position.set(-120, 0.25, 195);
+// scene.add(bottomRight);
 
-const sahithTexture = new THREE.TextureLoader().load("./teamImages/sahith.jpg");
-const sahith = new THREE.Mesh(
-  new THREE.CircleGeometry(30, 50),
-  new THREE.MeshLambertMaterial({ map: sahithTexture })
-);
-sahith.position.set(-50, 0.5, 195);
-sahith.rotation.x = -Math.PI / 2;
-sahith.rotation.z = -Math.PI;
-scene.add(sahith);
+// const sahithTexture = new THREE.TextureLoader().load("./teamImages/sahith.jpg");
+// const sahith = new THREE.Mesh(
+//   new THREE.CircleGeometry(30, 50),
+//   new THREE.MeshLambertMaterial({ map: sahithTexture })
+// );
+// sahith.position.set(-50, 0.5, 195);
+// sahith.rotation.x = -Math.PI / 2;
+// sahith.rotation.z = -Math.PI;
+// scene.add(sahith);
 
-const sahithLight = new THREE.PointLight(0xffffff, 10, 0);
-sahithLight.position.set(-50, 10, 180);
-// const sahithLightHelper = new THREE.PointLightHelper(sahithLight);
-scene.add(sahithLight);
+// const sahithLight = new THREE.PointLight(0xffffff, 10, 0);
+// sahithLight.position.set(-50, 10, 180);
+// // const sahithLightHelper = new THREE.PointLightHelper(sahithLight);
+// scene.add(sahithLight);
 
-const ayushTexture = new THREE.TextureLoader().load("./teamImages/ayush.jpg");
-const ayush = new THREE.Mesh(
-  new THREE.CircleGeometry(30, 50),
-  new THREE.MeshLambertMaterial({ map: ayushTexture })
-);
-ayush.position.set(-120, 0.5, 195);
-ayush.rotation.x = -Math.PI / 2;
-ayush.rotation.z = -Math.PI;
-scene.add(ayush);
+// const ayushTexture = new THREE.TextureLoader().load("./teamImages/ayush.jpg");
+// const ayush = new THREE.Mesh(
+//   new THREE.CircleGeometry(30, 50),
+//   new THREE.MeshLambertMaterial({ map: ayushTexture })
+// );
+// ayush.position.set(-120, 0.5, 195);
+// ayush.rotation.x = -Math.PI / 2;
+// ayush.rotation.z = -Math.PI;
+// scene.add(ayush);
 
-const ayushLight = new THREE.PointLight(0xffffff, 10, 0);
-ayushLight.position.set(-120, 10, 180);
-// const ayushLightHelper = new THREE.PointLightHelper(ayushLight);
-scene.add(ayushLight);
+// const ayushLight = new THREE.PointLight(0xffffff, 10, 0);
+// ayushLight.position.set(-120, 10, 180);
+// // const ayushLightHelper = new THREE.PointLightHelper(ayushLight);
+// scene.add(ayushLight);
 
-const sidTexture = new THREE.TextureLoader().load("./teamImages/sid.jpg");
-const sid = new THREE.Mesh(
-  new THREE.CircleGeometry(30, 50),
-  new THREE.MeshLambertMaterial({ map: sidTexture })
-);
-sid.position.set(-190, 0.5, 195);
-sid.rotation.x = -Math.PI / 2;
-sid.rotation.z = -Math.PI;
-scene.add(sid);
+// const sidTexture = new THREE.TextureLoader().load("./teamImages/sid.jpg");
+// const sid = new THREE.Mesh(
+//   new THREE.CircleGeometry(30, 50),
+//   new THREE.MeshLambertMaterial({ map: sidTexture })
+// );
+// sid.position.set(-190, 0.5, 195);
+// sid.rotation.x = -Math.PI / 2;
+// sid.rotation.z = -Math.PI;
+// scene.add(sid);
 
-const sidLight = new THREE.PointLight(0xffffff, 10, 0);
-sidLight.position.set(-190, 10, 180);
-// const sidLightHelper = new THREE.PointLightHelper(sidLight);
-scene.add(sidLight);
+// const sidLight = new THREE.PointLight(0xffffff, 10, 0);
+// sidLight.position.set(-190, 10, 180);
+// // const sidLightHelper = new THREE.PointLightHelper(sidLight);
+// scene.add(sidLight);
 
-const titleTexture = new THREE.TextureLoader().load("./teamImages/team_title.png");
-const titleRectangle = new THREE.PlaneGeometry(200, 40);
-const titleMesh = new THREE.MeshLambertMaterial({ map: titleTexture });
-titleMesh.alphaHash = 1;
-const title = new THREE.Mesh(titleRectangle, titleMesh);
+// const titleTexture = new THREE.TextureLoader().load("./teamImages/team_title.png");
+// const titleRectangle = new THREE.PlaneGeometry(200, 40);
+// const titleMesh = new THREE.MeshLambertMaterial({ map: titleTexture });
+// titleMesh.alphaHash = 1;
+// const title = new THREE.Mesh(titleRectangle, titleMesh);
 
-title.position.set(0, 0.5, 460);
-title.rotation.x = -Math.PI / 2;
-title.rotation.z = -Math.PI;
-scene.add(title);
+// title.position.set(0, 0.5, 460);
+// title.rotation.x = -Math.PI / 2;
+// title.rotation.z = -Math.PI;
+// scene.add(title);
 
-const titleLight = new THREE.PointLight(0xffffff, 50, 0);
-titleLight.position.set(0, 20, 450);
-// const titleLightHelper = new THREE.PointLightHelper(titleLight);
-scene.add(titleLight);
+// const titleLight = new THREE.PointLight(0xffffff, 50, 0);
+// titleLight.position.set(0, 20, 450);
+// // const titleLightHelper = new THREE.PointLightHelper(titleLight);
+// scene.add(titleLight);
 
-const topLeftCorner = new THREE.PointLight(0xffffff, 100, 0);
-topLeftCorner.position.set(220, 10, 470);
-// const topLeftCornerHelper = new THREE.PointLightHelper(topLeftCorner);
-scene.add(topLeftCorner);
+// const topLeftCorner = new THREE.PointLight(0xffffff, 100, 0);
+// topLeftCorner.position.set(220, 10, 470);
+// // const topLeftCornerHelper = new THREE.PointLightHelper(topLeftCorner);
+// scene.add(topLeftCorner);
 
-const topRightCorner = new THREE.PointLight(0xffffff, 100, 0);
-topRightCorner.position.set(-220, 10, 470);
-// const topRightCornerHelper = new THREE.PointLightHelper(topRightCorner);
-scene.add(topRightCorner);
+// const topRightCorner = new THREE.PointLight(0xffffff, 100, 0);
+// topRightCorner.position.set(-220, 10, 470);
+// // const topRightCornerHelper = new THREE.PointLightHelper(topRightCorner);
+// scene.add(topRightCorner);
 
-const teamSpotLight = new THREE.SpotLight(
-  0xffffff,
-  5,
-  350,
-  Math.PI / 8,
-  0.5,
-  0
-);
-teamSpotLight.position.set(0, 200, 250);
+// const teamSpotLight = new THREE.SpotLight(
+//   0xffffff,
+//   5,
+//   350,
+//   Math.PI / 7,
+//   0.5,
+//   0
+// );
+// teamSpotLight.position.set(0, 200, 250);
 
-const targetObject = new THREE.Object3D();
-targetObject.position.set(0, 0, 500);
+// const targetObject = new THREE.Object3D();
+// targetObject.position.set(100, 0, 350);
 
-teamSpotLight.target = targetObject;
+// teamSpotLight.target = targetObject;
 
-scene.add(teamSpotLight);
-scene.add(targetObject);
+// scene.add(teamSpotLight);
+// scene.add(targetObject);
 
 // const spotlightHelper = new THREE.SpotLightHelper(teamSpotLight);
 // scene.add(spotlightHelper);
@@ -428,160 +433,159 @@ scene.add(targetObject);
 ///// CAMERA MOVEMENT & TEAM SPOTLIGHT /////
 ////////////////////////////////////////////
 
-window.addEventListener("load", () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
+// window.addEventListener("load", () => {
+//   window.scrollTo({ top: 0, behavior: "smooth" });
+// });
 
-document.addEventListener("DOMContentLoaded", () => {
-  const meetTeamButton = document.getElementById("meet-team-button");
-  const sections = document.querySelectorAll("section");
-  const nextPrevButtons = document.getElementById("next-prev-buttons");
-  const prevButton = document.getElementById("prev-button");
-  const nextButton = document.getElementById("next-button");
-  const returnButton = document.getElementById("return-button");
+// document.addEventListener("DOMContentLoaded", () => {
+//   const meetTeamButton = document.getElementById("meet-team-button");
+//   const sections = document.querySelectorAll("section");
+//   const nextPrevButtons = document.getElementById("next-prev-buttons");
+//   const prevButton = document.getElementById("prev-button");
+//   const nextButton = document.getElementById("next-button");
+//   const returnButton = document.getElementById("return-button");
 
-  let currentSectionIndex = 0;
+//   let currentSectionIndex = 0;
 
-  document.getElementById("meet-team-button").style.pointerEvents = "none";
-  meetTeamButton.addEventListener("animationend", function (event) {
-    if (event.animationName === "fadeIn") {
-      meetTeamButton.style.pointerEvents = "auto";
-    }
-  });
+//   document.getElementById("meet-team-button").style.pointerEvents = "none";
+//   meetTeamButton.addEventListener("animationend", function (event) {
+//     if (event.animationName === "fadeIn") {
+//       meetTeamButton.style.pointerEvents = "auto";
+//     }
+//   });
 
-  let isAnimatingCamera = false;
+//   let isAnimatingCamera = false;
 
-  meetTeamButton.addEventListener("click", () => {
-    let targetPosition = new THREE.Vector3(200, 300, 250);
-    let targetUp = new THREE.Vector3(0, 0, 1);
-    let targetControl = new THREE.Vector3(200, 0, 200);
+//   meetTeamButton.addEventListener("click", () => {
+//     let targetPosition = new THREE.Vector3(200, 300, 250);
+//     let targetUp = new THREE.Vector3(0, 0, 1);
+//     let targetControl = new THREE.Vector3(200, 0, 200);
 
-    const topSection = document.querySelector(".top");
-    window.scrollTo({ top: topSection.offsetTop, behavior: "smooth" });
-    currentSectionIndex = 0;
-    nextPrevButtons.style.opacity = 1;
-    updateButtons();
+//     const topSection = document.querySelector(".top-left");
+//     window.scrollTo({ top: topSection.offsetTop, behavior: "smooth" });
+//     currentSectionIndex = 0;
+//     nextPrevButtons.style.opacity = 1;
+//     updateButtons();
 
-    document.getElementById("next-prev-buttons").style.pointerEvents = "auto";
+//     document.getElementById("next-prev-buttons").style.pointerEvents = "auto";
 
-    function animateCamera() {
-      if (!isAnimatingCamera) return;
+//     function animateCamera() {
+//       if (!isAnimatingCamera) return;
 
-      const increment = 0.05;
+//       const increment = 0.05;
 
-      if (camera.position.distanceTo(targetPosition) > 0.1) {
-        const newPosition = camera.position
-          .clone()
-          .lerp(targetPosition, increment);
-        camera.position.copy(newPosition);
-      }
+//       if (camera.position.distanceTo(targetPosition) > 0.1) {
+//         const newPosition = camera.position
+//           .clone()
+//           .lerp(targetPosition, increment);
+//         camera.position.copy(newPosition);
+//       }
 
-      if (camera.up.distanceTo(targetUp) > 0.1) {
-        const newUp = camera.up.clone().lerp(targetUp, increment);
-        camera.up.copy(newUp);
-      }
+//       if (camera.up.distanceTo(targetUp) > 0.1) {
+//         const newUp = camera.up.clone().lerp(targetUp, increment);
+//         camera.up.copy(newUp);
+//       }
 
-      if (controls.target.distanceTo(targetControl) > 0.1) {
-        const newTarget = controls.target
-          .clone()
-          .lerp(targetControl, increment);
-        controls.target.copy(newTarget);
-      }
+//       if (controls.target.distanceTo(targetControl) > 0.1) {
+//         const newTarget = controls.target
+//           .clone()
+//           .lerp(targetControl, increment);
+//         controls.target.copy(newTarget);
+//       }
 
-      controls.update();
-      renderer.render(scene, camera);
-      animationFrameId = requestAnimationFrame(animateCamera);
-    }
-    isAnimatingCamera = true;
-    animateCamera();
-  });
+//       controls.update();
+//       renderer.render(scene, camera);
+//       animationFrameId = requestAnimationFrame(animateCamera);
+//     }
+//     isAnimatingCamera = true;
+//     animateCamera();
+//   });
 
-  function updateButtons() {
-    prevButton.disabled = currentSectionIndex === 0;
-    nextButton.disabled = currentSectionIndex === sections.length - 1;
-  }
+//   function updateButtons() {
+//     prevButton.disabled = currentSectionIndex === 0;
+//     nextButton.disabled = currentSectionIndex === sections.length - 1;
+//   }
 
-  const targetCoordinates = [
-    { x: 0, y: 0, z: 500 },
-    { x: 100, y: 0, z: 350 },
-    { x: -100, y: 0, z: 350 },
-    { x: 100, y: 0, z: 180 },
-    { x: -100, y: 0, z: 180 },
-  ];
+//   const targetCoordinates = [
+//     { x: 100, y: 0, z: 350 },
+//     { x: -100, y: 0, z: 350 },
+//     { x: 100, y: 0, z: 180 },
+//     { x: -100, y: 0, z: 180 },
+//   ];
 
-  let isAnimating = false;
-  const animationDuration = 200;
-  let startTime;
-  let startCoords, targetCoords;
+//   let isAnimating = false;
+//   const animationDuration = 200;
+//   let startTime;
+//   let startCoords, targetCoords;
 
-  function animateTargetPosition(timestamp) {
-    if (!startTime) {
-      startTime = timestamp;
-      startCoords = { ...targetObject.position };
-      targetCoords = targetCoordinates[currentSectionIndex];
-    }
+//   function animateTargetPosition(timestamp) {
+//     if (!startTime) {
+//       startTime = timestamp;
+//       startCoords = { ...targetObject.position };
+//       targetCoords = targetCoordinates[currentSectionIndex];
+//     }
 
-    const elapsed = timestamp - startTime;
-    const progress = Math.min(elapsed / animationDuration, 1);
+//     const elapsed = timestamp - startTime;
+//     const progress = Math.min(elapsed / animationDuration, 1);
 
-    const newPosition = {
-      x: startCoords.x + (targetCoords.x - startCoords.x) * progress,
-      y: startCoords.y + (targetCoords.y - startCoords.y) * progress,
-      z: startCoords.z + (targetCoords.z - startCoords.z) * progress,
-    };
+//     const newPosition = {
+//       x: startCoords.x + (targetCoords.x - startCoords.x) * progress,
+//       y: startCoords.y + (targetCoords.y - startCoords.y) * progress,
+//       z: startCoords.z + (targetCoords.z - startCoords.z) * progress,
+//     };
 
-    targetObject.position.set(newPosition.x, newPosition.y, newPosition.z);
+//     targetObject.position.set(newPosition.x, newPosition.y, newPosition.z);
 
-    if (progress < 1) {
-      requestAnimationFrame(animateTargetPosition);
-    } else {
-      isAnimating = false;
-      startTime = null;
-    }
-  }
+//     if (progress < 1) {
+//       requestAnimationFrame(animateTargetPosition);
+//     } else {
+//       isAnimating = false;
+//       startTime = null;
+//     }
+//   }
 
-  function updateTargetPosition() {
-    if (!isAnimating) {
-      isAnimating = true;
-      requestAnimationFrame(animateTargetPosition);
-    }
-  }
+//   function updateTargetPosition() {
+//     if (!isAnimating) {
+//       isAnimating = true;
+//       requestAnimationFrame(animateTargetPosition);
+//     }
+//   }
 
-  prevButton.addEventListener("click", () => {
-    if (currentSectionIndex > 0) {
-      currentSectionIndex--;
-      const prevSection = sections[currentSectionIndex];
-      window.scrollTo({ top: prevSection.offsetTop, behavior: "smooth" });
-      updateButtons();
-      updateTargetPosition();
-    }
-  });
+//   prevButton.addEventListener("click", () => {
+//     if (currentSectionIndex > 0) {
+//       currentSectionIndex--;
+//       const prevSection = sections[currentSectionIndex];
+//       window.scrollTo({ top: prevSection.offsetTop, behavior: "smooth" });
+//       updateButtons();
+//       updateTargetPosition();
+//     }
+//   });
 
-  nextButton.addEventListener("click", () => {
-    if (currentSectionIndex < sections.length - 1) {
-      currentSectionIndex++;
-      const nextSection = sections[currentSectionIndex];
-      window.scrollTo({ top: nextSection.offsetTop, behavior: "smooth" });
-      updateButtons();
-      updateTargetPosition();
-    }
-  });
+//   nextButton.addEventListener("click", () => {
+//     if (currentSectionIndex < sections.length - 1) {
+//       currentSectionIndex++;
+//       const nextSection = sections[currentSectionIndex];
+//       window.scrollTo({ top: nextSection.offsetTop, behavior: "smooth" });
+//       updateButtons();
+//       updateTargetPosition();
+//     }
+//   });
 
-  returnButton.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    nextPrevButtons.style.opacity = 0;
-    currentSectionIndex = 0;
-    updateTargetPosition();
+//   returnButton.addEventListener("click", () => {
+//     window.scrollTo({ top: 0, behavior: "smooth" });
+//     nextPrevButtons.style.opacity = 0;
+//     currentSectionIndex = 0;
+//     updateTargetPosition();
 
-    document.getElementById("next-prev-buttons").style.pointerEvents = "none";
+//     document.getElementById("next-prev-buttons").style.pointerEvents = "none";
 
-    isAnimatingCamera = false;
+//     isAnimatingCamera = false;
 
-    camera.position.set(0, 45, -55);
-    camera.up.set(0, 1, 0);
-    controls.target = new THREE.Vector3(0, 0, 0);
-  });
-});
+//     camera.position.set(0, 45, -55);
+//     camera.up.set(0, 1, 0);
+//     controls.target = new THREE.Vector3(0, 0, 0);
+//   });
+// });
 
 ///////////////////////////
 ///// LIGHTING & GRID /////
