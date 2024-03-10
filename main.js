@@ -119,7 +119,7 @@ square3.position.set(7, 22, -0.75);
 const squaresGroup = new THREE.Group();
 squaresGroup.add(square1, square2, square3);
 squaresGroup.position.set(-25, 0, 0);
-scene.add(squaresGroup);
+// scene.add(squaresGroup);
 
 function onSquaresClick(event) {
   event.preventDefault();
@@ -205,7 +205,7 @@ const circle = new THREE.CircleGeometry(5, 50);
 const shadow = new THREE.Mesh(circle, gradientMaterial);
 shadow.rotation.x = -Math.PI / 2;
 shadow.position.set(-25, 0.5, 0);
-scene.add(shadow);
+// scene.add(shadow);
 
 const ground = new THREE.CircleGeometry(25, 100);
 const mesh = new THREE.MeshLambertMaterial({ color: "gray" });
@@ -213,7 +213,7 @@ const platform = new THREE.Mesh(ground, mesh);
 platform.rotation.x = -Math.PI / 2;
 platform.receiveShadow = true;
 platform.position.set(-25, 0, 0);
-scene.add(platform);
+// scene.add(platform);
 
 const logoSpotLight = new THREE.SpotLight(
   0xffffff,

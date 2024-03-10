@@ -13,21 +13,29 @@ canvas {
 
 main {
   z-index: 99;
-  position: absolute;
+  /* position: absolute; */
   margin: 0px auto;
   padding: 180px 0px;
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
+  /* display: grid; */
+  /* grid-template-columns: repeat(12, 1fr); */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 #greeting {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center;
   color: white;
   grid-column: 1 / span 5;
   font-size: 2.5rem;
   padding: 2rem;
-  margin-bottom: var(--spacing);
+  /* margin-bottom: var(--spacing); */
   text-shadow: 1px 3px 3px white;
-  --spacing: 470px;
+  /* --spacing: 470px; */
   opacity: 0;
   animation-delay: 0.25s;
   animation-name: fadeIn;
@@ -77,10 +85,29 @@ main {
   animation-fill-mode: forwards;
 }
 
+#greeting img {
+  height: 10vw;
+  width: 10vw;
+  margin-top: 2.5vw;
+  opacity: 0;
+  cursor: pointer;
+  animation-delay: 1.25s;
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  transition: all 0.3s ease;
+}
+
+#greeting img:hover {
+  height: 12.5vw;
+  width: 12.5vw;
+  transition: all 0.3s ease;
+}
+
 #meet-team-button {
   color: white;
   margin-top: 10vw;
-  grid-column: 9 / span 3;
+  /* grid-column: 9 / span 3; */
   text-shadow: none;
   font-size: 2vw;
   text-align: center;
@@ -118,7 +145,7 @@ main {
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  grid-column: 9 / span 3;
+  /* grid-column: 9 / span 3; */
 }
 
 #next-prev-buttons button {
@@ -138,7 +165,7 @@ main {
 
 section {
   color: white;
-  grid-column: 1 / span 5;
+  /* grid-column: 1 / span 5; */
   padding: 1rem;
   background: var(--dark-bg);
   font-size: 1.25rem;
