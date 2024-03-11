@@ -22,7 +22,7 @@ main {
   padding: 180px 0px;
   /* display: grid; */
   /* grid-template-columns: repeat(12, 1fr); */
-  background: black;
+  background: white;
 }
 
 #greeting {
@@ -31,12 +31,12 @@ main {
   align-items: center;
   justify-self: center;
   text-align: center;
-  color: white;
+  color: dimgray;
   /* grid-column: 1 / span 5; */
   /* font-size: 2.5rem; */
   padding: 2rem;
   /* margin-bottom: var(--spacing); */
-  text-shadow: 1px 3px 3px white;
+  /* text-shadow: 1px 3px 3px white; */
   /* --spacing: 470px; */
   opacity: 0;
   animation-delay: 0.25s;
@@ -48,7 +48,7 @@ main {
 
 #greeting h1 span:first-child {
   color: #c0daf3;
-  text-shadow: 1px 3px 3px #c0daf3;
+  /* text-shadow: 1px 3px 3px #c0daf3; */
   opacity: 0;
   animation-delay: 0.5s;
   animation-name: fadeIn;
@@ -58,7 +58,7 @@ main {
 
 #greeting h1 span:last-child {
   color: #c0bdb0;
-  text-shadow: 1px 3px 3px #c0bdb0;
+  /* text-shadow: 1px 3px 3px #c0bdb0; */
   opacity: 0;
   animation-delay: 0.75s;
   animation-name: fadeIn;
