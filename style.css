@@ -106,6 +106,16 @@ main {
   transition: all 0.3s ease;
 }
 
+#greeting a {
+  text-align: center;
+  font-family: inherit;
+  opacity: 0;
+  animation-delay: 1.25s;
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
 #meet-team-button {
   color: white;
   margin-top: 10vw;
