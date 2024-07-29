@@ -1,3 +1,3 @@
-# onespace.github.io
+# onespace-app.com
 
 COMPANY WEBSITE 🥳🚀!!!!!!
