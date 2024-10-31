@@ -66,9 +66,8 @@ main {
   animation-fill-mode: forwards;
 }
 
-#greeting h5 {
+#greeting h3 {
   font-weight: 300;
-  font-size: 2.5vw;
   opacity: 0;
   animation-delay: 1s;
   animation-name: fadeIn;
@@ -78,7 +77,6 @@ main {
 
 #greeting p {
   font-weight: 200;
-  font-size: 2vw;
   text-shadow: none;
   opacity: 0;
   animation-delay: 1s;
@@ -190,7 +188,6 @@ section i {
 }
 
 .top h1 {
-  font-size: 3.5rem;
   text-shadow: 1px 3px 3px white;
 }
 
